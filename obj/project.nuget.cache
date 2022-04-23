@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "8Mm8KdEUMYtfhQo/6uB3dpR3+Vu+szewkqkbyzmPW2ueZoxzjVNcx0MhyGySdTHCDCitwtKPUb2dD5nryheXgA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Hai\\source\\repos\\WinFormsApp2\\WinFormsApp2\\WinFormsApp2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Hai\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.24\\microsoft.netcore.app.host.win-x64.3.1.24.nupkg.sha512"
+  ],
+  "logs": []
+}
