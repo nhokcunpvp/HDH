@@ -10,6 +10,8 @@ namespace WinFormsApp2
 {
     class CGlobalKeyboardHook
     {
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
         [DllImport("user32.dll")]
         static extern IntPtr SetWindowsHookEx(int idHook, keyboardHookProc callback, IntPtr hInstance, uint threadId);
         [DllImport("user32.dll")]
@@ -19,7 +21,7 @@ namespace WinFormsApp2
         [DllImport("user32.dll")]
         static extern short GetKeyState(int nCode);
         [DllImport("kernel32.dll")]
-        static extern IntPtr LoadLibrary(string IpFileName);   // 라이브러리 등록
+        static extern IntPtr LoadLibrary(string IpFileName);   
 
         public delegate int keyboardHookProc(int code, int wParam, ref keyboardHookStruct IParam);     // callback Delegate
 
