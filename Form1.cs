@@ -802,19 +802,35 @@ namespace WinFormsApp2
             }
             else return false;
         }
-
+        protected override void OnFormClosing(FormClosingEventArgs e)
+{
+    if (MessageBox.Show("Bạn Muốn Thoát Chương Trình?", "Hệ Thống", MessageBoxButtons.YesNo) == DialogResult.No)
+    {
+        e.Cancel = true;
+    }
+}
         private void button1_Click(object sender, EventArgs e)
         {
-            if (button1.Text == "Bật")
+            DialogResult lkResult = MessageBox.Show("Bạn Muốn Thay ĐỔi?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (lkResult == DialogResult.Yes)
             {
-                turn_on = true;
-                button1.Text = "Tắt";
-            }else
-            if (button1.Text == "Tắt")
-            {
-                turn_on = false;
-                button1.Text = "Bật";
+                if (button1.Text == "Bật")
+                {
+                    turn_on = true;
+                    button1.Text = "Tắt";
+                }
+                else
+                if (button1.Text == "Tắt")
+                    {
+                        turn_on = false;
+                        button1.Text = "Bật";
+                    }
             }
+
+            if (lkResult == DialogResult.No)
+
+            {
+
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
