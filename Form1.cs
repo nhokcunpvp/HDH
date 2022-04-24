@@ -802,7 +802,13 @@ namespace WinFormsApp2
             }
             else return false;
         }
-
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Bạn Muốn Thoát Chương Trình?", "Hệ Thống", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             if (button1.Text == "Bật")
