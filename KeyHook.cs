@@ -10,8 +10,6 @@ namespace WinFormsApp2
 {
     class CGlobalKeyboardHook
     {
-        [DllImport("user32.dll", SetLastError = true)]
-        static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
         [DllImport("user32.dll")]
         static extern IntPtr SetWindowsHookEx(int idHook, keyboardHookProc callback, IntPtr hInstance, uint threadId);
         [DllImport("user32.dll")]

@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Win32;
 using System.Windows.Forms;
 
 namespace WinFormsApp2
@@ -42,11 +43,22 @@ namespace WinFormsApp2
         }
         private string last = " ";
         private bool turn_on = true;
+        RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
         CGlobalKeyboardHook _kbdHook = new CGlobalKeyboardHook();
 
         public Form1()
         {
             InitializeComponent();
+            if (rkApp.GetValue("MyApp") == null)
+            {
+                // The value doesn't exist, the application is not set to run at startup
+                checkBox1.Checked = false;
+            }
+            else
+            {
+                // The value exists, the application is set to run at startup
+                checkBox1.Checked = true;
+            }
         }
 
 
@@ -802,6 +814,28 @@ namespace WinFormsApp2
             {
                 turn_on = false;
                 button1.Text = "Bật";
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            RegisterInStartup(checkBox1.Checked);
+        }
+
+  
+        private void RegisterInStartup(bool isChecked)
+        {
+            
+
+            RegistryKey registryKey = Registry.CurrentUser.OpenSubKey
+                    ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            if (isChecked)
+            {
+                registryKey.SetValue("ApplicationName", Application.ExecutablePath);
+            }
+            else
+            {
+                registryKey.DeleteValue("ApplicationName");
             }
         }
     }
